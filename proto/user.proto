@@ -1,0 +1,57 @@
+syntax = "proto3";
+option go_package = "model";
+package user;
+
+import "google/protobuf/empty.proto";
+
+service UserService {
+  rpc Createuser(CreateUserReq) returns (CreateUserRes);
+  rpc UpdateUser(UpdateUserReq) returns (UpdateUserRes);
+  rpc DeleteUser(DeleteUserReq) returns (DeleteUserRes);
+  rpc GetUser(GetUserReq) returns (GetUserRes);
+  rpc ListUsers(ListUsersReq) returns (stream ListUsersRes);
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string address = 4;
+}
+
+message CreateUserReq {
+  User user = 1;
+}
+
+message CreateUserRes {
+  User user = 1;
+}
+
+message DeleteUserReq {
+  string id = 1;
+}
+
+message DeleteUserRes {
+  bool success = 1;
+}
+
+message UpdateUserReq {
+  User user = 1;
+}
+
+message UpdateUserRes {
+  User user = 1;
+}
+
+message GetUserReq {
+  string id = 1;
+}
+
+message GetUserRes {
+  User user = 1;
+}
+
+message ListUsersReq {}
+message ListUsersRes {
+  User user = 1;
+}
